@@ -1,10 +1,15 @@
 ---
+import { SITE } from "@/config";
+
 // Remove current url path and remove trailing slash if exists
 const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
 
 // Get url array from path
 // eg: /tags/tailwindcss => ['tags', 'tailwindcss']
 const breadcrumbList = currentUrlPath.split("/").slice(1);
+
+// Store original breadcrumbList for structured data
+const originalBreadcrumbList = [...breadcrumbList];
 
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
@@ -21,6 +26,58 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"}`
   );
 }
+
+// Generate structured data for breadcrumbs
+const generateBreadcrumbStructuredData = () => {
+  const items = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": new URL("/", Astro.site).toString()
+    }
+  ];
+
+  let position = 2;
+  let currentPath = "";
+
+  originalBreadcrumbList.forEach((segment, index) => {
+    currentPath += `/${segment}`;
+    
+    // Skip page numbers in structured data
+    if (!isNaN(Number(segment))) {
+      return;
+    }
+
+    let name = segment;
+    let url = new URL(currentPath, Astro.site).toString();
+
+    // Handle special cases
+    if (segment === "posts") {
+      name = "Posts";
+    } else if (originalBreadcrumbList[0] === "tags" && index === 1) {
+      name = decodeURIComponent(segment);
+      url = new URL(`/tags/${segment}`, Astro.site).toString();
+    }
+
+    items.push({
+      "@type": "ListItem",
+      "position": position,
+      "name": name,
+      "item": url
+    });
+    
+    position++;
+  });
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items
+  };
+};
+
+const breadcrumbStructuredData = generateBreadcrumbStructuredData();
 ---
 
 <nav class="mx-auto mt-8 mb-1 w-full max-w-app px-4" aria-label="breadcrumb">
@@ -55,3 +112,10 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     }
   </ul>
 </nav>
+
+<!-- Breadcrumb Structured Data -->
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(breadcrumbStructuredData)}
+></script>

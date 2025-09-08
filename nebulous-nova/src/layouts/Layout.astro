@@ -14,6 +14,8 @@ export interface Props {
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
+  tags?: string[];
+  readingTime?: string;
 }
 
 const {
@@ -26,24 +28,59 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
+  tags,
+  readingTime,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
 
-const structuredData = {
+const structuredData = pubDatetime ? {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: `${title}`,
-  image: `${socialImageURL}`,
-  datePublished: `${pubDatetime?.toISOString()}`,
+  headline: title,
+  description: description,
+  image: {
+    "@type": "ImageObject",
+    url: socialImageURL.toString(),
+  },
+  url: canonicalURL.toString(),
+  datePublished: pubDatetime.toISOString(),
   ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: `${author}`,
-      ...(profile && { url: profile }),
+  author: {
+    "@type": "Person",
+    name: author,
+    ...(profile && { url: profile }),
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.title,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/favicon.svg", Astro.site).toString(),
     },
-  ],
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonicalURL.toString(),
+  },
+  ...(tags && tags.length > 0 && { keywords: tags.join(", ") }),
+  ...(readingTime && { timeRequired: readingTime }),
+  inLanguage: SITE.lang || "ja",
+} : {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: title,
+  description: description,
+  url: canonicalURL.toString(),
+  publisher: {
+    "@type": "Organization",
+    name: SITE.title,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/favicon.svg", Astro.site).toString(),
+    },
+  },
+  inLanguage: SITE.lang || "ja",
 };
 ---
 

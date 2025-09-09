@@ -12,7 +12,6 @@ tags:
   - 統計学
   - 経済学
   - システムトレード
-canonicalURL: https://systemtrade.blog/technical_fundamental
 description: テクニカル分析とファンダメンタル分析
 ---
 

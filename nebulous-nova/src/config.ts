@@ -1,7 +1,7 @@
 export const SITE = {
-  website: "https://systemtrade.blog/", // replace this with your deployed domain
+  website: "https://systemtrade.blog/",
   author: "45395",
-  profile: "https://satnaing.dev/",
+  profile: "https://systemtrade.blog/",
   desc: "システムトレード構築のために勉強したことをアウトプットするブログです",
   title: "SystemTrade -45395-",
   ogImage: "astropaper-og.jpg",
@@ -14,7 +14,7 @@ export const SITE = {
   editPost: {
     enabled: true,
     text: "Edit page",
-    url: "https://github.com/hide-0yen/systemtrade-blog",
+    url: "https://github.com/your-username/nebulous-nova/edit/main/", // 実際のGitHubリポジトリURLに変更
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"

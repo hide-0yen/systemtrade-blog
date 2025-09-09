@@ -28,13 +28,15 @@ const {
   author,
   description,
   ogImage: initOgImage,
-  canonicalURL,
   pubDatetime,
   modDatetime,
   timezone,
   tags,
   hideEditPost,
 } = post.data;
+
+// Generate canonical URL automatically based on current page URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
 const { Content } = await render(post);
 

@@ -1,0 +1,56 @@
+name: Deploy
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build & Deploy to Firebase Hosting
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: nebulous-nova
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "📦 Install pnpm"
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+
+      - name: "🔧 Setup Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+          cache-dependency-path: nebulous-nova/pnpm-lock.yaml
+
+      - name: "📦 Install dependencies"
+        run: pnpm install
+
+      - name: "🔎 Lint code"
+        run: pnpm run lint
+
+      - name: "📝 Check code format"
+        run: pnpm run format:check
+
+      - name: "🏗️ Build the project"
+        run: pnpm run build
+
+      - name: "🚀 Deploy to Firebase Hosting"
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: systemtrade-c9d0b
+          entryPoint: ./nebulous-nova

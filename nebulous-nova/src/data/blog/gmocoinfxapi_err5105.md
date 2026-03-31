@@ -265,7 +265,7 @@ else:
 **検証**:
 
 ```bash
-PYTHONPATH=/Users/htada/systemtrade/_fxTradingEngine:/Users/htada/systemtrade \
+PYTHONPATH=/Users/XXX/systemtrade/_fxTradingEngine:/Users/XXX/systemtrade \
   /opt/anaconda3/envs/st312/bin/python \
   execution/main_forward_test_gmo.py \
   --trade-type Swing --mode 練習 --once

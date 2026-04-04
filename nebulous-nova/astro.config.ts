@@ -10,6 +10,38 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
+import fs from "node:fs";
+import path from "node:path";
+// Build a URL-to-lastmod map from blog frontmatter for sitemap
+function buildLastmodMap(): Map<string, string> {
+  const blogDir = path.resolve("src/data/blog");
+  const map = new Map<string, string>();
+  if (!fs.existsSync(blogDir)) return map;
+
+  for (const file of fs.readdirSync(blogDir)) {
+    if (!file.endsWith(".md") || file.startsWith("_")) continue;
+    const content = fs.readFileSync(path.join(blogDir, file), "utf-8");
+    const fmMatch = content.match(/^---\n([\s\S]*?)\n---/);
+    if (!fmMatch) continue;
+    const fm = fmMatch[1];
+
+    const draftMatch = fm.match(/^draft:\s*true/m);
+    if (draftMatch) continue;
+
+    const modMatch = fm.match(/^modDatetime:\s*(.+)$/m);
+    const pubMatch = fm.match(/^pubDatetime:\s*(.+)$/m);
+    const dateStr = modMatch?.[1] ?? pubMatch?.[1];
+    if (!dateStr) continue;
+
+    // Use filename as-is (without kebab-case conversion) to match Astro's slug generation
+    const slug = file.replace(/\.md$/, "");
+    const url = `${SITE.website}posts/${slug}/`;
+    map.set(url, new Date(dateStr.trim()).toISOString());
+  }
+  return map;
+}
+
+const lastmodMap = buildLastmodMap();
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +49,13 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
+      serialize(item) {
+        const lastmod = lastmodMap.get(item.url);
+        if (lastmod) {
+          item.lastmod = lastmod;
+        }
+        return item;
+      },
     }),
   ],
   markdown: {

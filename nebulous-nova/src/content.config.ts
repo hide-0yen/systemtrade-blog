@@ -16,7 +16,9 @@ const blog = defineCollection({
       draft: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
       ogImage: image().or(z.string()).optional(),
-      description: z.string(),
+      description: z
+        .string()
+        .max(200, "descriptionは200文字以内にしてください"),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
     }),

@@ -16,6 +16,7 @@ export interface Props {
   scrollSmooth?: boolean;
   tags?: string[];
   readingTime?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -30,6 +31,7 @@ const {
   scrollSmooth = false,
   tags,
   readingTime,
+  noindex = false,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
@@ -50,6 +52,7 @@ const structuredData = pubDatetime ? {
     "@type": "Person",
     name: author,
     ...(profile && { url: profile }),
+    ...(SITE.authorSameAs?.length && { sameAs: SITE.authorSameAs }),
   },
   publisher: {
     "@type": "Organization",
@@ -80,6 +83,14 @@ const structuredData = pubDatetime ? {
       url: new URL("/favicon.svg", Astro.site).toString(),
     },
   },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE.website}search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
   inLanguage: SITE.lang || "ja",
 };
 ---
@@ -95,7 +106,11 @@ const structuredData = pubDatetime ? {
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="ja" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!-- General Meta Tags -->
     <title>{title}</title>
@@ -169,13 +184,18 @@ const structuredData = pubDatetime ? {
 
     <script is:inline src="/toggle-theme.js"></script>
 
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-SHBYJ3QFRS"></script>
+    <!-- Google tag (gtag.js) - deferred loading for better TBT -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-SHBYJ3QFRS');
+      (window.requestIdleCallback || function(cb){setTimeout(cb,3000)})(function(){
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-SHBYJ3QFRS';
+        s.async = true;
+        document.head.appendChild(s);
+      });
     </script>
   </head>
   <body>

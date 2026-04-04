@@ -71,6 +71,18 @@ const layoutProps = {
   tags,
 };
 
+/* ========== Related Posts (tag-based) ========== */
+
+const relatedPosts = posts
+  .filter(p => p.id !== post.id)
+  .map(p => {
+    const commonTags = p.data.tags.filter(t => tags.includes(t));
+    return { ...p, commonTagCount: commonTags.length };
+  })
+  .filter(p => p.commonTagCount > 0)
+  .sort((a, b) => b.commonTagCount - a.commonTagCount)
+  .slice(0, 4);
+
 /* ========== Prev/Next Posts ========== */
 
 const allPosts = posts.map(({ data: { title }, id, filePath }) => ({
@@ -133,6 +145,26 @@ const nextPost =
     <BackToTopButton />
 
     <ShareLinks />
+
+    {
+      relatedPosts.length > 0 && (
+        <div data-pagefind-ignore class="my-8">
+          <h2 class="text-lg font-semibold">Related Posts</h2>
+          <ul class="mt-4 space-y-3">
+            {relatedPosts.map(rp => (
+              <li>
+                <a
+                  href={getPath(rp.id, rp.filePath)}
+                  class="text-accent decoration-dashed underline-offset-4 hover:underline"
+                >
+                  {rp.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
 
     <hr class="my-6 border-dashed" />
 

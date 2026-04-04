@@ -2,6 +2,7 @@ export const SITE = {
   website: "https://systemtrade.blog/",
   author: "45395",
   profile: "https://systemtrade.blog/",
+  authorSameAs: ["https://github.com/htada"],
   desc: "システムトレード構築のために勉強したことをアウトプットするブログです",
   title: "SystemTrade -45395-",
   ogImage: "astropaper-og.jpg",

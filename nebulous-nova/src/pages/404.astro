@@ -1,28 +1,58 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
+
+const posts = await getCollection("blog");
+const recentPosts = getSortedPosts(posts).slice(0, 5);
 ---
 
-<Layout title={`404 Not Found | ${SITE.title}`}>
+<Layout title={`404 Not Found | ${SITE.title}`} noindex>
   <Header />
 
   <main
     id="main-content"
-    class="mx-auto flex max-w-app flex-1 items-center justify-center"
+    class="mx-auto flex max-w-app flex-1 flex-col items-center justify-center px-4"
   >
-    <div class="mb-14 flex flex-col items-center justify-center">
+    <div class="mb-8 flex flex-col items-center justify-center">
       <h1 class="text-9xl font-bold text-accent">404</h1>
       <span aria-hidden="true">¯\_(ツ)_/¯</span>
       <p class="mt-4 text-2xl sm:text-3xl">Page Not Found</p>
-      <LinkButton
-        href="/"
-        class="my-6 text-lg underline decoration-dashed underline-offset-8"
-      >
-        Go back home
-      </LinkButton>
+      <div class="mt-6 flex gap-4">
+        <LinkButton
+          href="/"
+          class="text-lg underline decoration-dashed underline-offset-8"
+        >
+          Go back home
+        </LinkButton>
+        <LinkButton
+          href="/search/"
+          class="text-lg underline decoration-dashed underline-offset-8"
+        >
+          Search
+        </LinkButton>
+      </div>
+    </div>
+
+    <div class="w-full max-w-lg">
+      <h2 class="text-lg font-semibold">Recent Posts</h2>
+      <ul class="mt-4 space-y-3">
+        {recentPosts.map(({ data, id, filePath }) => (
+          <li>
+            <a
+              href={getPath(id, filePath)}
+              class="text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              {data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </main>
 

@@ -5,7 +5,7 @@ export const SITE = {
   authorSameAs: ["https://github.com/htada"],
   desc: "システムトレード構築のために勉強したことをアウトプットするブログです",
   title: "SystemTrade -45395-",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "og.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,

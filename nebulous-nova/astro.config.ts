@@ -10,8 +10,25 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
+import { visit } from "unist-util-visit";
 import fs from "node:fs";
 import path from "node:path";
+
+function customRehypeLazyLoadImage() {
+  return function (tree: Parameters<typeof visit>[0]) {
+    visit(tree, function (node) {
+      const el = node as {
+        tagName?: string;
+        properties?: Record<string, string>;
+      };
+      if (el.tagName === "img") {
+        el.properties ??= {};
+        el.properties.loading = "lazy";
+        el.properties.decoding = "async";
+      }
+    });
+  };
+}
 // Build a URL-to-lastmod map from blog frontmatter for sitemap
 function buildLastmodMap(): Map<string, string> {
   const blogDir = path.resolve("src/data/blog");
@@ -48,7 +65,16 @@ export default defineConfig({
   site: SITE.website,
   integrations: [
     sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
+      filter: page => {
+        // Exclude archives page if not enabled
+        if (!SITE.showArchives && page.endsWith("/archives")) return false;
+        // Exclude search page (noindex)
+        if (page.includes("/search")) return false;
+        // Exclude pagination pages (noindex): /posts/2/, /tags/xxx/2/, etc.
+        if (/\/posts\/\d+\/$/.test(page)) return false;
+        if (/\/tags\/[^/]+\/\d+\/$/.test(page)) return false;
+        return true;
+      },
       serialize(item) {
         const lastmod = lastmodMap.get(item.url);
         if (lastmod) {
@@ -60,6 +86,7 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    rehypePlugins: [customRehypeLazyLoadImage],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "night-owl" },

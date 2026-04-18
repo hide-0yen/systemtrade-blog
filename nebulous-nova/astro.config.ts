@@ -70,9 +70,10 @@ export default defineConfig({
         if (!SITE.showArchives && page.endsWith("/archives")) return false;
         // Exclude search page (noindex)
         if (page.includes("/search")) return false;
-        // Exclude pagination pages (noindex): /posts/2/, /tags/xxx/2/, etc.
+        // Exclude tag pages (noindex): /tags/, /tags/xxx/
+        if (page.includes("/tags/") || page.endsWith("/tags")) return false;
+        // Exclude pagination pages (noindex): /posts/2/
         if (/\/posts\/\d+\/$/.test(page)) return false;
-        if (/\/tags\/[^/]+\/\d+\/$/.test(page)) return false;
         return true;
       },
       serialize(item) {

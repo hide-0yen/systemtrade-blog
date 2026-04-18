@@ -42,16 +42,18 @@ const recentPosts = getSortedPosts(posts).slice(0, 5);
     <div class="w-full max-w-lg">
       <h2 class="text-lg font-semibold">Recent Posts</h2>
       <ul class="mt-4 space-y-3">
-        {recentPosts.map(({ data, id, filePath }) => (
-          <li>
-            <a
-              href={getPath(id, filePath)}
-              class="text-accent decoration-dashed underline-offset-4 hover:underline"
-            >
-              {data.title}
-            </a>
-          </li>
-        ))}
+        {
+          recentPosts.map(({ data, id, filePath }) => (
+            <li>
+              <a
+                href={getPath(id, filePath)}
+                class="text-accent decoration-dashed underline-offset-4 hover:underline"
+              >
+                {data.title}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </main>

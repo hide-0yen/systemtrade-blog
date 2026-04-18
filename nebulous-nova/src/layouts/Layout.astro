@@ -36,63 +36,65 @@ const {
 
 const socialImageURL = new URL(ogImage, Astro.url);
 
-const structuredData = pubDatetime ? {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: title,
-  description: description,
-  image: {
-    "@type": "ImageObject",
-    url: socialImageURL.toString(),
-  },
-  url: canonicalURL.toString(),
-  datePublished: pubDatetime.toISOString(),
-  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: {
-    "@type": "Person",
-    name: author,
-    ...(profile && { url: profile }),
-    ...(SITE.authorSameAs?.length && { sameAs: SITE.authorSameAs }),
-  },
-  publisher: {
-    "@type": "Organization",
-    name: SITE.title,
-    logo: {
-      "@type": "ImageObject",
-      url: new URL("/favicon.svg", Astro.site).toString(),
-    },
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": canonicalURL.toString(),
-  },
-  ...(tags && tags.length > 0 && { keywords: tags.join(", ") }),
-  ...(readingTime && { timeRequired: readingTime }),
-  inLanguage: SITE.lang || "ja",
-} : {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: title,
-  description: description,
-  url: canonicalURL.toString(),
-  publisher: {
-    "@type": "Organization",
-    name: SITE.title,
-    logo: {
-      "@type": "ImageObject",
-      url: new URL("/favicon.svg", Astro.site).toString(),
-    },
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE.website}search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
-  inLanguage: SITE.lang || "ja",
-};
+const structuredData = pubDatetime
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      description: description,
+      image: {
+        "@type": "ImageObject",
+        url: socialImageURL.toString(),
+      },
+      url: canonicalURL.toString(),
+      datePublished: pubDatetime.toISOString(),
+      ...(modDatetime && { dateModified: modDatetime.toISOString() }),
+      author: {
+        "@type": "Person",
+        name: author,
+        ...(profile && { url: profile }),
+        ...(SITE.authorSameAs?.length && { sameAs: SITE.authorSameAs }),
+      },
+      publisher: {
+        "@type": "Organization",
+        name: SITE.title,
+        logo: {
+          "@type": "ImageObject",
+          url: new URL("/favicon.svg", Astro.site).toString(),
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL.toString(),
+      },
+      ...(tags && tags.length > 0 && { keywords: tags.join(", ") }),
+      ...(readingTime && { timeRequired: readingTime }),
+      inLanguage: SITE.lang || "ja",
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: title,
+      description: description,
+      url: canonicalURL.toString(),
+      publisher: {
+        "@type": "Organization",
+        name: SITE.title,
+        logo: {
+          "@type": "ImageObject",
+          url: new URL("/favicon.svg", Astro.site).toString(),
+        },
+      },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE.website}search?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+      inLanguage: SITE.lang || "ja",
+    };
 ---
 
 <!doctype html>
@@ -186,12 +188,19 @@ const structuredData = pubDatetime ? {
     <!-- Google tag (gtag.js) - deferred loading for better TBT -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-SHBYJ3QFRS');
-      (window.requestIdleCallback || function(cb){setTimeout(cb,3000)})(function(){
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-SHBYJ3QFRS';
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-SHBYJ3QFRS");
+      (
+        window.requestIdleCallback ||
+        function (cb) {
+          setTimeout(cb, 3000);
+        }
+      )(function () {
+        var s = document.createElement("script");
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-SHBYJ3QFRS";
         s.async = true;
         document.head.appendChild(s);
       });

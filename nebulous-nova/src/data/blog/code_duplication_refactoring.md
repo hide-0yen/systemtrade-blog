@@ -137,12 +137,12 @@ PositionManagerはBacktestEngineと同様のアプローチで統合した。
 
 重複統合と並行して、関数の複雑度（Cyclomatic Complexity）も削減した。
 
-| 施策 | 対象 | Before → After | 削減率 |
-|------|------|---------------|-------|
-| H-COMP-01 | unified_analyzer.py `_analyze_pair` | CC 60 → 19 | -68% |
-| H-COMP-02 | JS TradingEngine `__init__` | CC 53 → 21 | -60% |
-| H-COMP-02 | JS TradingEngine `_process_moc_breakout` | CC 51 → 6 | -88% |
-| H-COMP-03 | US TradingEngine `run_session` | CC 42 → 23 | -45% |
+| 施策      | 対象                                     | Before → After | 削減率 |
+| --------- | ---------------------------------------- | -------------- | ------ |
+| H-COMP-01 | unified_analyzer.py `_analyze_pair`      | CC 60 → 19     | -68%   |
+| H-COMP-02 | JS TradingEngine `__init__`              | CC 53 → 21     | -60%   |
+| H-COMP-02 | JS TradingEngine `_process_moc_breakout` | CC 51 → 6      | -88%   |
+| H-COMP-03 | US TradingEngine `run_session`           | CC 42 → 23     | -45%   |
 
 CC（Cyclomatic Complexity、循環的複雑度）とは、関数内の分岐パス数を測る指標で、一般にCC 10以下が「保守可能」、CC 20以上は「リファクタリング推奨」、CC 50以上は「テスト不能に近い」とされる。
 

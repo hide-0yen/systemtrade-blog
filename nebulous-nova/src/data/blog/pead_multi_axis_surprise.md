@@ -212,12 +212,24 @@ class PeadManager:
     "drift_days": 3,
     "enable_negative_exclusion": true,
     "negative_exclusion_threshold": -0.1,
-    "bonus_thresholds": [[0.1, 0.5], [0.2, 1.0], [0.5, 1.5]],
+    "bonus_thresholds": [
+      [0.1, 0.5],
+      [0.2, 1.0],
+      [0.5, 1.5]
+    ],
 
     "multi_axis_enabled": false,
     "consensus_mode": "majority",
-    "sales_bonus_thresholds": [[0.05, 0.5], [0.1, 1.0], [0.3, 1.5]],
-    "op_bonus_thresholds": [[0.1, 0.5], [0.2, 1.0], [0.5, 1.5]],
+    "sales_bonus_thresholds": [
+      [0.05, 0.5],
+      [0.1, 1.0],
+      [0.3, 1.5]
+    ],
+    "op_bonus_thresholds": [
+      [0.1, 0.5],
+      [0.2, 1.0],
+      [0.5, 1.5]
+    ],
     "sales_negative_exclusion_threshold": -0.1,
     "op_negative_exclusion_threshold": -0.1
   }
@@ -260,11 +272,11 @@ class PeadManager:
 
 ## 期待効果
 
-| 指標 | EPS単軸（Before） | 3軸判定（After予測） |
-|------|-------------------|---------------------|
-| PEAD偽陽性率 | 100%（基準） | 50〜70%（30〜50%削減） |
-| ボーナス精度 | コストカット型を誤検出 | 実質的な業績改善のみ検出 |
-| 除外精度 | EPS単軸で見逃し | 3軸コンセンサスで包括判定 |
+| 指標         | EPS単軸（Before）      | 3軸判定（After予測）      |
+| ------------ | ---------------------- | ------------------------- |
+| PEAD偽陽性率 | 100%（基準）           | 50〜70%（30〜50%削減）    |
+| ボーナス精度 | コストカット型を誤検出 | 実質的な業績改善のみ検出  |
+| 除外精度     | EPS単軸で見逃し        | 3軸コンセンサスで包括判定 |
 
 ---
 

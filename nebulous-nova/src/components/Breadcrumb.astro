@@ -30,10 +30,10 @@ const generateBreadcrumbStructuredData = () => {
   const items = [
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": new URL("/", Astro.site).toString()
-    }
+      position: 1,
+      name: "Home",
+      item: new URL("/", Astro.site).toString(),
+    },
   ];
 
   let position = 2;
@@ -41,7 +41,7 @@ const generateBreadcrumbStructuredData = () => {
 
   originalBreadcrumbList.forEach((segment, index) => {
     currentPath += `/${segment}`;
-    
+
     // Skip page numbers in structured data
     if (!isNaN(Number(segment))) {
       return;
@@ -60,18 +60,18 @@ const generateBreadcrumbStructuredData = () => {
 
     items.push({
       "@type": "ListItem",
-      "position": position,
-      "name": name,
-      "item": url
+      position: position,
+      name: name,
+      item: url,
     });
-    
+
     position++;
   });
 
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": items
+    itemListElement: items,
   };
 };
 
@@ -116,4 +116,4 @@ const breadcrumbStructuredData = generateBreadcrumbStructuredData();
   type="application/ld+json"
   is:inline
   set:html={JSON.stringify(breadcrumbStructuredData)}
-></script>
+/>

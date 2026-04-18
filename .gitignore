@@ -75,3 +75,6 @@ systemtrade-*.json
 # Local tool configs
 .claude/
 .serena/
+
+# Unrelated local projects
+/Integrated-Access-Analysis/

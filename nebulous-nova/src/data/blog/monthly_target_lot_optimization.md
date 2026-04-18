@@ -1,16 +1,15 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-05T15:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "月次目標逆算型ロット最適化：scipyの2段階最適化で全ペアのロットを自動配分"
 featured: false
 draft: false
 tags:
   - FX
-  - 資金管理
-  - scipy
+  - リスク管理
   - Python
-  - ポートフォリオ最適化
+  - ファンダメンタル分析
 description: "9通貨ペアの勝率・RR比・相関を考慮し、月利目標から最適なロット配分をscipyの2段階最適化で自動計算するシステムの設計と実装を解説する。"
 ---
 

@@ -11,11 +11,8 @@ tags:
   - リスク管理
   - バックテスト
   - FX自動売買
-  - Long-only戦略
-  - 破産確率
-  - GMOCoinFXAPI
-  - Monte Carloシミュレーション
-  - VIX連動
+  - システムトレード
+  - API統合
 
 description: EUR_JPYとGBP_JPYに絞ったLong-only戦略で破産確率0%・安定運用を実現するまでのバックテスト条件、VIX連動のリスク制御、GMOコインFX APIでの自動化構成を解説します。
 ---

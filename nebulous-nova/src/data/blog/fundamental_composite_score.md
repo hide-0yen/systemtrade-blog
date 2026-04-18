@@ -1,6 +1,6 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-11T10:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "ファンダメンタル複合スコア：財務データ5軸で銘柄の質を判定する"
 featured: false

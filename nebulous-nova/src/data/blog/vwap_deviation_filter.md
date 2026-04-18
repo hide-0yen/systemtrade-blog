@@ -1,13 +1,13 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-07T15:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "VWAP乖離エントリーフィルター：「寄天」損失を構造的に排除する"
 featured: false
 draft: false
 tags:
   - 日本株
-  - VWAP
+  - テクニカル分析
   - エントリーフィルター
   - リスク管理
 description: "VWAP乖離率で「寄天」（寄り付き天井）損失を構造的に排除する2段階フィルターの設計と実装。penaltyモードとblockモードの使い分けを解説する。"

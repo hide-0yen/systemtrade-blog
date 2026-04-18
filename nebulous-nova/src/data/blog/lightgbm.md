@@ -7,16 +7,9 @@ featured: false
 draft: false
 tags:
   - AI駆動開発
-  - LightGBM
-  - 勾配ブースティング決定木
+  - Python
   - テクニカル分析
-  - テクニカル指標
-  - スコアリング改善
-  - GBDT
-  - 線形回帰
-  - ニューラルネット
-  - ランダムフォレスト
-  - 機械学習
+  - エントリーフィルター
 
 description: LightGBM（Gradient Boosting Decision Tree、勾配ブースティング決定木）を使用してテクニカル指標の重みを過去データから動的に学習するスコアリングシステムの設計と実装について解説しています。
 ---

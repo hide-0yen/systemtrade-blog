@@ -7,10 +7,8 @@ featured: false
 draft: false
 tags:
   - AI駆動開発
-  - 米国株エンジン
-  - AlpacaAPI
-  - moomooAPI
-  - S&P500
+  - 米国株
+  - API統合
 
 description: 米国株自動売買エンジンをゼロから構築した設計記録。S&P500銘柄のスコアリングとAlpaca APIによる夜間発注、ギャップリスク制御までのアーキテクチャを解説します。
 ---

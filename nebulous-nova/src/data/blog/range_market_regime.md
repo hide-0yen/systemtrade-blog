@@ -1,16 +1,14 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-09T10:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "レンジ相場を収益化する：ADX+NATR+BBWによるレジーム判定とBBバウンス逆張り"
 featured: false
 draft: false
 tags:
   - FX
-  - レンジ戦略
-  - レジーム判定
+  - システムトレード
   - テクニカル分析
-  - ボリンジャーバンド
 description: "ADX・NATR・BBWの3指標複合レジーム判定でレンジ相場を検出し、BBバウンス逆張りで相場の70%を占めるレンジ期間を収益化する設計と実装。"
 ---
 

@@ -9,8 +9,7 @@ tags:
   - FX
   - バックテスト
   - Python
-  - パフォーマンス最適化
-  - 並列処理
+  - インフラ
 description: "PythonのmultiprocessingでFXバックテストのグリッドサーチを並列化し、実行時間を7日から1日に短縮した設計と実装の記録。"
 ---
 

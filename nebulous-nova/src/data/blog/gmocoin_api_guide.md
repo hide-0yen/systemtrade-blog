@@ -11,11 +11,8 @@ tags:
   - リスク管理
   - バックテスト
   - FX自動売買
-  - Long-only戦略
-  - 破産確率
-  - GMOCoinFXAPI
-  - Monte Carloシミュレーション
-  - VIX連動
+  - システムトレード
+  - API統合
 
 description: GMO Coin FX APIを使った自動売買システムの開発で遭遇した5日間のデバッグの記録と、その過程で学んだ重要な実装パターンを共有します。
 ---

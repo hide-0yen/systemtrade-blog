@@ -1,13 +1,13 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-03T15:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "戦略の有効性を統計的に評価する：Go/No-Go判断のための定量基準"
 featured: false
 draft: false
 tags:
   - リスク管理
-  - 統計
+  - 統計学
   - 自動売買
   - バックテスト
 description: "ポアソン分布、Wilson信頼区間、シグナルスコア閾値感度分析を組み合わせた、自動売買戦略のGo/No-Go判断基準の設計を解説する。"

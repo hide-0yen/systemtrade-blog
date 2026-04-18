@@ -1,14 +1,14 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-06T15:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "Multi-Signal Confluence：42パターンのシグナル合流で精度を上げる"
 featured: false
 draft: false
 tags:
   - FX
-  - シグナル品質
-  - テクニカル指標
+  - エントリーフィルター
+  - テクニカル分析
   - バックテスト
 description: "複数のテクニカル指標が同じ方向を指す「合流」パターンを42種類データベース化し、エントリー精度を向上させるConfluenceフィルターの設計記録。"
 ---

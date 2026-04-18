@@ -6,8 +6,7 @@ title: システムトレードで大量のデータを扱う
 featured: false
 draft: false
 tags:
-  - TimeScaleDB
-  - PostgreSQL
+  - インフラ
 description: システムトレードで時系列データを扱うためにMySQLからPostgreSQL＋TimescaleDBへ移行した経緯、ハイパーテーブルと連続集計を使った運用の勘所を紹介します。
 ---
 

@@ -1,16 +1,14 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-05T10:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "複利再投資を自動提案するシステム：毎日23時にSlackで最適ロットを通知"
 featured: false
 draft: false
 tags:
   - FX
-  - 資金管理
-  - 複利運用
-  - 自動化
-  - Slack
+  - リスク管理
+  - インフラ
 description: "口座残高に基づいてフラクショナルケリーで最適ロットを毎日計算し、Slackで提案する複利再投資システムの設計と実装記録。"
 ---
 

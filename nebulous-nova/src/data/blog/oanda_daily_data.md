@@ -6,10 +6,9 @@ title: OANDAのFX日足データ取得プログラムサンプルコード
 featured: false
 draft: false
 tags:
-  - OANDA
-  - python
+  - API統合
+  - Python
   - FX
-  - プログラム
 description: OANDA公式のoandapyV20ライブラリを使ってFX日足データを取得するPythonサンプルコード。取得件数・期間指定・pandas DataFrame化までの最小実装を紹介します。
 ---
 

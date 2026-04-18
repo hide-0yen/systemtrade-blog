@@ -1,6 +1,6 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-02T15:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "バルクCSV一括ダウンロード：バックフィル4時間を数分に短縮する"
 featured: false
@@ -8,7 +8,7 @@ draft: false
 tags:
   - 日本株
   - J-Quants
-  - データパイプライン
+  - インフラ
   - Python
 description: "J-Quants V2の /bulk/ CSV一括ダウンロードAPIを活用し、日本株バックフィルを従来比約50倍・4時間から数分に短縮した実装と設計。リクエスト枠の温存方針も解説します。"
 ---

@@ -1,15 +1,13 @@
 ---
 author: "45395"
-pubDatetime: 2026-04-03T10:00:00+09:00
+pubDatetime: 2026-04-08T15:00:00+09:00
 modDatetime: 2026-04-03T10:00:00+09:00
 title: "市場レジーム自動識別：ADXとVIXのマトリクスでエントリー閾値を動的制御する"
 featured: false
 draft: false
 tags:
   - FX
-  - 市場レジーム
-  - ADX
-  - VIX
+  - テクニカル分析
   - 自動売買
 description: "ADXとVIXの2軸マトリクスで12通りの相場状態を分類し、エントリー閾値を動的に変化させる市場レジーム自動識別フィルターの設計と実装。"
 ---
